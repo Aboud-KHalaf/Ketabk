@@ -14,5 +14,5 @@ class BookEntity {
   });
 }
 
-// notes : 
+// notes :
 // 1- "num" uses for double and integer numbers.
