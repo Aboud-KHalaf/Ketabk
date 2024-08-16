@@ -31,7 +31,7 @@ class HomeRemoteDataSourcesImpl extends HomeRemoteDataSources {
 
     List<BookEntity> books = getBooksList(data);
 
-    cacheBooksData(books, kFeaturedBox);
+    cacheBooksData(books, kNewestBox);
 
     return books;
   }
