@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 
 class HomeRepoImple extends HomeRepo {
   final HomeLocalDataSources homeLocalDataSources;
-  final HomeRemoteDataSourcesImpl homeRemoteDataSources;
+  final HomeRemoteDataSources homeRemoteDataSources;
 
   HomeRepoImple(
       {required this.homeLocalDataSources,
