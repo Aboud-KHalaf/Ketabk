@@ -1,4 +1,6 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly/Features/home/presentation/manager/cubit/newest_books_cubit.dart';
+import 'package:bookly/Features/home/presentation/manager/featured_books_cubit/featured_book_cubit.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/simple_bloc_observer.dart';
@@ -23,11 +25,21 @@ class Bookly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: kPrimaryColor,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<FeaturedBookCubit>()..fetchFeaturedBooks(),
+        ),
+        BlocProvider(
+          create: (context) => sl<NewestBooksCubit>(),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kPrimaryColor,
+        ),
       ),
     );
   }
