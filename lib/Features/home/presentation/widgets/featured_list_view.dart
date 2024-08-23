@@ -24,16 +24,7 @@ class FeaturedBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Stack(
-              children: [
-                CustomBookImage(image: books[index].image!),
-                Text(
-                  '$index of ${books.length}',
-                  style: const TextStyle(
-                      backgroundColor: Colors.black, fontSize: 24),
-                ),
-              ],
-            ),
+            child: CustomBookImage(image: books[index].image!),
           );
         },
       ),

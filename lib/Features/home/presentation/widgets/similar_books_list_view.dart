@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'custom_book_item.dart';
-
 class SimilarBooksListview extends StatelessWidget {
   const SimilarBooksListview({super.key});
 
