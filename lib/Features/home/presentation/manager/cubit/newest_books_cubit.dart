@@ -22,4 +22,8 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
       },
     );
   }
+
+  Future<void> loadMoreBooks() async {
+    // await fetchNewestBooks(page: currentPage + 1);
+  }
 }

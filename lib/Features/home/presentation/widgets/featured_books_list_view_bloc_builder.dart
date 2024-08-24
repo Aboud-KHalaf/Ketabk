@@ -1,7 +1,6 @@
 import 'package:bookly/Features/home/presentation/manager/featured_books_cubit/featured_book_cubit.dart';
 import 'package:bookly/Features/home/presentation/widgets/featured_list_view.dart';
 import 'package:bookly/Features/home/presentation/widgets/featured_shimmer_list.dart';
-import 'package:bookly/core/widgets/loading_shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +15,7 @@ class FeaturedBooksListViewBlocBuilder extends StatefulWidget {
 class _FeaturedBooksListViewBlocBuilderState
     extends State<FeaturedBooksListViewBlocBuilder> {
   late ScrollController _scrollController;
-  bool _isLoadingMore = false; // Flag to prevent multiple calls
+  bool _isLoadingMore = false;
 
   @override
   void initState() {
@@ -28,7 +27,7 @@ class _FeaturedBooksListViewBlocBuilderState
       var currentPostition = _scrollController.position.pixels;
       var maxPosition = _scrollController.position.maxScrollExtent;
       //
-      if (currentPostition >= maxPosition * 0.7 && !_isLoadingMore) {
+      if (currentPostition >= maxPosition * 0.8 && !_isLoadingMore) {
         _isLoadingMore = true;
         context.read<FeaturedBookCubit>().loadMoreBooks().then((_) {
           _isLoadingMore = false;

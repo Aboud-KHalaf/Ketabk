@@ -16,10 +16,10 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-      GoRoute(
-        path: kSearchView,
-        builder: (context, state) => const SearchView(),
-      ),
+      // GoRoute(
+      //   path: kSearchView,
+      //   builder: (context, state) => const SearchView(),
+      // ),
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),

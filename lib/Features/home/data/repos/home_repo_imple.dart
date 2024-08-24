@@ -32,10 +32,10 @@ class HomeRepoImple extends HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
     try {
       List<BookEntity> books;
-      books = homeLocalDataSources.fetchNewestBooks();
-      if (books.isNotEmpty) {
-        return right(books);
-      }
+      // books = homeLocalDataSources.fetchNewestBooks();
+      // if (books.isNotEmpty) {
+      //   return right(books);
+      // }
       books = await homeRemoteDataSources.fetchNewestBooks();
       return right(books);
     } catch (e) {
