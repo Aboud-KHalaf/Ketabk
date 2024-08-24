@@ -40,6 +40,7 @@ dependencies:
   go_router: ^5.2.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  internet_connection_checker: ^2.0.0
   meta: ^1.15.0
   shimmer: ^3.0.0
 
