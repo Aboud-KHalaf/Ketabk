@@ -28,6 +28,8 @@ class FeaturedBookCubit extends Cubit<FeaturedBookState> {
   }
 
   Future<void> loadMoreBooks() async {
-    await fetchFeaturedBooks(page: currentPage + 1);
+    if (currentPage < 11) {
+      await fetchFeaturedBooks(page: currentPage + 1);
+    }
   }
 }

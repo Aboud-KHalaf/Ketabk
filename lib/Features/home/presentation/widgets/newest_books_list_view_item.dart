@@ -1,11 +1,10 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly/Features/home/presentation/widgets/custom_book_item.dart';
+import 'package:bookly/Features/home/presentation/widgets/custom_book_image.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../constants.dart';
-import '../../../../core/utils/assets.dart';
 import '../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 
@@ -58,9 +57,8 @@ class BookListViewItem extends StatelessWidget {
                     children: [
                       Text(
                         'Free',
-                        style: Styles.textStyle20.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.bold, color: Colors.green),
                       ),
                       const Spacer(),
                       const BookRating(),
