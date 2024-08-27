@@ -25,12 +25,13 @@ class BookModel extends BookEntity {
     this.accessInfo,
     this.searchInfo,
   }) : super(
+          url: volumeInfo?.previewLink ?? 'noLink',
           bookId: id!,
           image: volumeInfo?.imageLinks?.thumbnail ?? 'noImg',
           titlel: volumeInfo!.title!,
           atutherName: volumeInfo.authors?.first ?? 'noName',
           price: 0.0,
-          rating: volumeInfo.maturityRating ?? 'no rating',
+          rating: volumeInfo.maturityRating ?? 'noRating',
           categories:
               (volumeInfo.categories)!.map((e) => e.toString()).toList(),
         );

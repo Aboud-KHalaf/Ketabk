@@ -60,8 +60,8 @@ class BookDetailsSection extends StatelessWidget {
           const SizedBox(
             height: 37,
           ),
-          const BooksAction(
-            url: '',
+          BooksAction(
+            url: bookEntity.url!,
           ),
         ],
       ),

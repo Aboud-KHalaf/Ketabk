@@ -17,9 +17,12 @@ class BookEntity extends HiveObject {
   final String rating;
   @HiveField(6)
   final List<String>? categories;
+  @HiveField(7)
+  final String? url;
 
   BookEntity({
     required this.categories,
+    required this.url,
     required this.bookId,
     required this.image,
     required this.titlel,
@@ -31,3 +34,4 @@ class BookEntity extends HiveObject {
 
 // notes :
 // 1- "num" uses for double and integer numbers.
+// flutter packages pub run build_runner build

@@ -25,8 +25,12 @@ class BooksAction extends StatelessWidget {
           Expanded(
               child: CustomButton(
             onPressed: () {
-              final Uri uri = Uri.parse(url);
-              _launchUrl(uri);
+              if (url != 'noLink') {
+                final Uri uri = Uri.parse(url);
+                _launchUrl(uri);
+              } else {
+                // code
+              }
             },
             fontSize: 16,
             text: 'Free Preview',
