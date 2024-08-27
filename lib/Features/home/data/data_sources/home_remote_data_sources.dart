@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 abstract class HomeRemoteDataSources {
   Future<List<BookEntity>> fetchFeaturedBooks({int page = 0});
   Future<List<BookEntity>> fetchNewestBooks({int page = 0});
+  Future<List<BookEntity>> fetchSimilarBooks({required String category});
 }
 
 class HomeRemoteDataSourcesImpl extends HomeRemoteDataSources {
@@ -30,13 +31,25 @@ class HomeRemoteDataSourcesImpl extends HomeRemoteDataSources {
   Future<List<BookEntity>> fetchNewestBooks({int page = 0}) async {
     var data = await apiService.getApi(
         endPoint:
-            "volumes?Filtering=free-ebooks&q=computer science&startIndex=${(page * 10) + 1}");
+            "volumes?Filtering=free-ebooks&q=math&startIndex=${(page * 10) + 1}");
 
     List<BookEntity> books = getBooksList(data);
     debugPrint(
         '-- fetchNewestBooks :  the api has fetched the data of page number $page');
 
     //cacheBooksData(books, kNewestBox);
+
+    return books;
+  }
+
+  @override
+  Future<List<BookEntity>> fetchSimilarBooks({required String category}) async {
+    var data = await apiService.getApi(
+        endPoint: 'volumes?Filtering=relevance&q=subject:$category');
+    List<BookEntity> books = getBooksList(data);
+
+    debugPrint(
+        '-- fetchSimilarBooks :  the api has fetched the data of category : ( $category )');
 
     return books;
   }

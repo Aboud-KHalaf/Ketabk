@@ -15,8 +15,11 @@ class BookEntity extends HiveObject {
   final num? price;
   @HiveField(5)
   final String rating;
+  @HiveField(6)
+  final List<String>? categories;
 
   BookEntity({
+    required this.categories,
     required this.bookId,
     required this.image,
     required this.titlel,

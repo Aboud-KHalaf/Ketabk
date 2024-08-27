@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/presentation/manager/cubit/newest_books_cubit.dart';
+import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/widgets/featured_books_list_view_bloc_builder.dart';
 import 'package:bookly/Features/home/presentation/widgets/newest_books_list_view_bloc_builder.dart';
 import 'package:bookly/core/utils/styles.dart';
@@ -62,7 +62,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 height: 50,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   'Newest Books',
                   style: Styles.textStyle18,
