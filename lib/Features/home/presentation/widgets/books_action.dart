@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/widgets/custom_button.dart';
 
 class BooksAction extends StatelessWidget {
-  const BooksAction({super.key});
-
+  const BooksAction({super.key, required this.url});
+  final String url;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
               child: CustomButton(
             text: 'Free',
             backgroundColor: Colors.white,
@@ -23,11 +24,15 @@ class BooksAction extends StatelessWidget {
           )),
           Expanded(
               child: CustomButton(
+            onPressed: () {
+              final Uri uri = Uri.parse(url);
+              _launchUrl(uri);
+            },
             fontSize: 16,
             text: 'Free Preview',
-            backgroundColor: Color(0xffEF8262),
+            backgroundColor: const Color(0xffEF8262),
             textColor: Colors.white,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(16),
               bottomRight: Radius.circular(16),
             ),
@@ -35,5 +40,9 @@ class BooksAction extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) throw Exception('Could not launch $url');
   }
 }
