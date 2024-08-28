@@ -8,6 +8,11 @@ import 'package:bookly/Features/home/domain/use_cases/fetch_similar_books_usecas
 import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/manager/featured_books_cubit/featured_book_cubit.dart';
 import 'package:bookly/Features/home/presentation/manager/similar_books_cubit.dart/similar_books_cubit.dart';
+import 'package:bookly/Features/search/data/data_sources/search_remote_data_source.dart';
+import 'package:bookly/Features/search/data/repos/search_repo_impl.dart';
+import 'package:bookly/Features/search/domain/repos/search_repo.dart';
+import 'package:bookly/Features/search/domain/usecases/fetch_searched_books_usecase.dart';
+import 'package:bookly/Features/search/presentation/manager/cubit/search_cubit_cubit.dart';
 import 'package:bookly/core/network/network_info.dart';
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:get_it/get_it.dart';
@@ -30,6 +35,8 @@ void setupServiceLocator() {
       () => HomeLocalDataSourcesImpl());
   sl.registerLazySingleton<HomeRemoteDataSources>(
       () => HomeRemoteDataSourcesImpl(sl<ApiService>()));
+  sl.registerLazySingleton<SearchRemoteDataSource>(
+      () => SearchRemoteDataSourceImpl(apiService: sl<ApiService>()));
 
   // Register repositories
   sl.registerLazySingleton<HomeRepo>(() => HomeRepoImple(
@@ -37,6 +44,9 @@ void setupServiceLocator() {
         homeLocalDataSources: sl<HomeLocalDataSources>(),
         homeRemoteDataSources: sl<HomeRemoteDataSources>(),
       ));
+
+  sl.registerLazySingleton<SearchRepo>(() =>
+      SearchRepoImpl(searchRemoteDataSource: sl<SearchRemoteDataSource>()));
 
   // Register use cases
   sl.registerLazySingleton<FetchFeaturedBooksUseCase>(
@@ -48,6 +58,9 @@ void setupServiceLocator() {
   sl.registerLazySingleton<FetchSimilarBooksUsecase>(
       () => FetchSimilarBooksUsecase(sl<HomeRepo>()));
 
+  sl.registerLazySingleton<FetchSearchedBooksUseCase>(
+      () => FetchSearchedBooksUseCase(sl<SearchRepo>()));
+
   // Register cubits
   sl.registerFactory<FeaturedBookCubit>(
       () => FeaturedBookCubit(sl<FetchFeaturedBooksUseCase>()));
@@ -55,4 +68,6 @@ void setupServiceLocator() {
       () => NewestBooksCubit(sl<FetchNewestBooksUseCase>()));
   sl.registerFactory<SimilarBooksCubit>(
       () => SimilarBooksCubit(sl<FetchSimilarBooksUsecase>()));
+  sl.registerFactory<SearchBooksCubit>(
+      () => SearchBooksCubit(sl<FetchSearchedBooksUseCase>()));
 }

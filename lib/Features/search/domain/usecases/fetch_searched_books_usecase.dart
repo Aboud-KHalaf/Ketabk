@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 class FetchSearchedBooksUseCase extends UseCase<List<BookEntity>, String> {
   final SearchRepo searchRepo;
 
-  FetchSearchedBooksUseCase({required this.searchRepo});
+  FetchSearchedBooksUseCase(this.searchRepo);
   @override
   Future<Either<Failure, List<BookEntity>>> call([String? parm]) async {
     return await searchRepo.fetchSearchedBooks(searchText: parm!);

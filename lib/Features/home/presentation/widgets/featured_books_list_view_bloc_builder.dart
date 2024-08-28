@@ -52,7 +52,7 @@ class _FeaturedBooksListViewBlocBuilderState
             scrollController: _scrollController,
           );
         } else if (state is FeaturedBookFailure) {
-          return Center(child: Text(state.errMessage));
+          return const SizedBox();
         } else {
           return const Center(child: FeaturedShimmerList());
         }
