@@ -22,7 +22,12 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
     var result = await fetchNewestBooksUsecase.call(page);
     result.fold(
       (failure) {
-        emit(NewestBooksFailure(errMessage: failure.message));
+        if (page == 0) {
+          emit(NewestBooksFailure(errMessage: failure.message));
+        } else {
+          currentPage++;
+          loadMoreBooks();
+        }
       },
       (books) {
         allBooks.addAll(books);

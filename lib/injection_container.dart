@@ -13,15 +13,19 @@ import 'package:bookly/Features/search/data/repos/search_repo_impl.dart';
 import 'package:bookly/Features/search/domain/repos/search_repo.dart';
 import 'package:bookly/Features/search/domain/usecases/fetch_searched_books_usecase.dart';
 import 'package:bookly/Features/search/presentation/manager/cubit/search_cubit_cubit.dart';
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/network/network_info.dart';
 import 'package:bookly/core/themes/manager/cubit/app_theme_cubit.dart';
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 
 final sl = GetIt.instance;
 
-void setupServiceLocator() {
+Future<void> setupServiceLocator() async {
+  var themeBox = await Hive.openBox(kSettingsBox);
+
   // Register external dependencies
   sl.registerLazySingleton<Dio>(() => Dio());
   // sl.registerLazySingleton<InternetConnectionChecker>(
@@ -71,5 +75,5 @@ void setupServiceLocator() {
       () => SimilarBooksCubit(sl<FetchSimilarBooksUsecase>()));
   sl.registerFactory<SearchBooksCubit>(
       () => SearchBooksCubit(sl<FetchSearchedBooksUseCase>()));
-  sl.registerFactory<ThemeCubit>(() => ThemeCubit());
+  sl.registerFactory<ThemeCubit>(() => ThemeCubit(themeBox));
 }

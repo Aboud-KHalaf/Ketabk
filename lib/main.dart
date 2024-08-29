@@ -15,6 +15,7 @@ void main() async {
   Hive.registerAdapter<BookEntity>(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kNewestBox);
+  await Hive.openBox(kSettingsBox);
 
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
@@ -23,7 +24,6 @@ void main() async {
 
 class Bookly extends StatelessWidget {
   const Bookly({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

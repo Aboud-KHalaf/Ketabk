@@ -17,7 +17,12 @@ class FeaturedBookCubit extends Cubit<FeaturedBookState> {
     var result = await featuredBooksUseCase.call(page);
     result.fold(
       (failure) {
-        emit(FeaturedBookFailure(errMessage: failure.message));
+        if (page == 0) {
+          emit(FeaturedBookFailure(errMessage: failure.message));
+        } else {
+          currentPage++;
+          loadMoreBooks();
+        }
       },
       (books) {
         currentPage = page;
