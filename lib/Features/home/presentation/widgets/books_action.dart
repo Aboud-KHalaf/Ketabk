@@ -12,12 +12,12 @@ class BooksAction extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
               child: CustomButton(
             text: 'Free',
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).cardColor.withOpacity(0.9),
             textColor: Colors.green,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               bottomLeft: Radius.circular(16),
             ),
@@ -34,7 +34,7 @@ class BooksAction extends StatelessWidget {
             },
             fontSize: 16,
             text: 'Free Preview',
-            backgroundColor: const Color(0xffEF8262),
+            backgroundColor: Theme.of(context).hintColor.withOpacity(0.9),
             textColor: Colors.white,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(16),
