@@ -15,7 +15,7 @@ import 'package:bookly/Features/search/domain/usecases/fetch_searched_books_usec
 import 'package:bookly/Features/search/presentation/manager/cubit/search_cubit_cubit.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/network/network_info.dart';
-import 'package:bookly/core/themes/manager/cubit/app_theme_cubit.dart';
+import 'package:bookly/core/themes/manager/app_theme_cubit.dart';
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';

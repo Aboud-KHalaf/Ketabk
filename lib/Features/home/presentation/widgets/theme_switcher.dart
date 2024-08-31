@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/themes/manager/cubit/app_theme_cubit.dart';
+import '../../../../core/themes/manager/app_theme_cubit.dart';
 
 class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({super.key});
@@ -17,6 +17,7 @@ class ThemeSwitcher extends StatelessWidget {
               theme.brightness == Brightness.light
                   ? Icons.dark_mode
                   : Icons.light_mode,
+              color: Theme.of(context).hintColor,
             ),
           ),
         );

@@ -5,7 +5,7 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
     cardColor: const Color(0xFF000000),
-    hintColor: const Color(0xFF0095F6),
+    hintColor: const Color(0xFFfa4a1c),
     scaffoldBackgroundColor: const Color(0xFFF8F8F8),
     appBarTheme: const AppBarTheme(
       color: Color(0xFFFFFFFF),
@@ -24,7 +24,7 @@ class AppThemes {
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF000000),
     cardColor: const Color(0xFFF8F8F8),
-    hintColor: const Color(0xFF0095F6),
+    hintColor: const Color(0xFFfa4a1c),
     scaffoldBackgroundColor: const Color(0xFF000000),
     appBarTheme: const AppBarTheme(
       color: Color(0xFF000000),

@@ -46,35 +46,37 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       controller: _scrollController,
-      slivers: const [
+      slivers: [
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 30,
                 ),
                 child: CustomAppBar(),
               ),
-              FeaturedBooksListViewBlocBuilder(),
-              SizedBox(
+              const FeaturedBooksListViewBlocBuilder(),
+              const SizedBox(
                 height: 50,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   'Newest Books',
-                  style: Styles.textStyle18,
+                  style: Styles.textStyle18.copyWith(
+                    color: Theme.of(context).hintColor,
+                  ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
           ),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: NewestBooksListViewBlocBuilder(),
         ),
       ],

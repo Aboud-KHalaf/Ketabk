@@ -3,8 +3,7 @@ import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/utils/assets.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -15,9 +14,20 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40, bottom: 20),
       child: Row(
         children: [
-          Image.asset(
-            AssetsData.logo,
-            height: 18,
+          Shimmer.fromColors(
+            baseColor: Theme.of(context)
+                .hintColor, // Base color for the shimmer effect
+            highlightColor: Theme.of(context)
+                .scaffoldBackgroundColor, // Highlight color for the shimmer effect
+            child: const Text(
+              'YourBook',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Colors
+                    .white, // Text color (base color is overridden by shimmer effect)
+              ),
+            ),
           ),
           const Spacer(),
           const ThemeSwitcher(),
@@ -26,9 +36,10 @@ class CustomAppBar extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(context).push(AppRouter.kSearchView);
               },
-              icon: const Icon(
+              icon: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 22,
+                color: Theme.of(context).hintColor,
               ))
         ],
       ),

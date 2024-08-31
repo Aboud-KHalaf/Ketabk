@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../../app_theme.dart';
-
-part 'app_theme_state.dart';
+import '../app_theme.dart';
 
 class ThemeCubit extends Cubit<ThemeData> {
   final Box box;
@@ -17,7 +13,6 @@ class ThemeCubit extends Cubit<ThemeData> {
 
   static ThemeData _getInitialTheme(Box box) {
     final isDarkMode = box.get('isDarkMode', defaultValue: true) as bool;
-    log('is dark : $isDarkMode');
     return isDarkMode ? AppThemes.darkTheme : AppThemes.lightTheme;
   }
 
