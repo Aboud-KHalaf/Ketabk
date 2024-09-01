@@ -6,6 +6,7 @@ class AppThemes {
     primaryColor: const Color(0xFFFFFFFF),
     cardColor: const Color(0xFF000000),
     hintColor: const Color(0xFFfa4a1c),
+    disabledColor: Colors.black,
     scaffoldBackgroundColor: const Color(0xFFF8F8F8),
     appBarTheme: const AppBarTheme(
       color: Color(0xFFFFFFFF),
@@ -34,6 +35,7 @@ class AppThemes {
       bodyLarge: TextStyle(color: Color(0xFFFFFFFF)),
       bodyMedium: TextStyle(color: Color(0xFFFFFFFF)),
     ),
+    disabledColor: Colors.white,
     iconTheme: const IconThemeData(
       color: Color(0xFFFFFFFF),
     ),

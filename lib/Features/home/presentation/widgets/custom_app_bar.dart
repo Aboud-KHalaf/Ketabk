@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           Shimmer.fromColors(
+            period: const Duration(seconds: 10),
             baseColor: Theme.of(context)
                 .hintColor, // Base color for the shimmer effect
             highlightColor: Theme.of(context)
