@@ -1,9 +1,9 @@
+import 'package:bookly/Features/Splash/presentation/widgets/sliding_text.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({Key? key}) : super(key: key);
@@ -12,10 +12,15 @@ class SplashViewbody extends StatefulWidget {
   State<SplashViewbody> createState() => _SplashViewbodyState();
 }
 
-class _SplashViewbodyState extends State<SplashViewbody> {
+class _SplashViewbodyState extends State<SplashViewbody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slidingAnimation;
+
   @override
   void initState() {
     super.initState();
+    initSlidingAnimation();
     navigateToHome();
   }
 
@@ -25,9 +30,32 @@ class _SplashViewbodyState extends State<SplashViewbody> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Lottie.asset(AssetsData.bookAnimation, repeat: false),
+        Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Hero(
+            tag: 'logo',
+            child: Image.asset(AssetsData.logo),
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        SlidingText(slidingAnimation: slidingAnimation),
       ],
     );
+  }
+
+  void initSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 5), end: const Offset(0, -1))
+            .animate(animationController);
+
+    animationController.forward();
   }
 
   void navigateToHome() {

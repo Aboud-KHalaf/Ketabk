@@ -1,4 +1,5 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly/Features/home/presentation/widgets/featured_shimmer_list.dart';
 import 'package:bookly/Features/home/presentation/widgets/newest_books_list_view_item.dart';
 import 'package:bookly/Features/search/presentation/manager/cubit/search_cubit_cubit.dart';
 import 'package:bookly/core/widgets/custom_error_widget.dart';
@@ -55,9 +56,12 @@ class SearchResultBlocBuilder extends StatelessWidget {
         if (state is SearchBooksSuccess) {
           return SearchResultListView(books: state.books);
         } else if (state is SearchBooksLoading) {
-          return const CircularProgressIndicator();
+          return const FeaturedShimmerList();
         } else if (state is SearchBooksFailure) {
-          return CustomEroorWidget(errMessage: state.errMessage);
+          return CustomEroorWidget(
+            errMessage: state.errMessage,
+            withRefrech: false,
+          );
         } else {
           return const Text('search');
         }

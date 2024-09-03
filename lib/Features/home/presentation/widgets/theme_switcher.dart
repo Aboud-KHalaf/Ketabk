@@ -17,7 +17,7 @@ class ThemeSwitcher extends StatelessWidget {
               theme.brightness == Brightness.light
                   ? Icons.dark_mode
                   : Icons.light_mode,
-              color: Theme.of(context).hintColor,
+              color: Theme.of(context).cardColor,
             ),
           ),
         );

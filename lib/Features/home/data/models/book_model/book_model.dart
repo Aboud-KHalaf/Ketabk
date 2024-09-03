@@ -33,7 +33,8 @@ class BookModel extends BookEntity {
           price: 0.0,
           rating: volumeInfo.maturityRating ?? 'noRating',
           categories:
-              (volumeInfo.categories)!.map((e) => e.toString()).toList(),
+              (volumeInfo.categories)?.map((e) => e.toString()).toList() ??
+                  ["programming"],
         );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(

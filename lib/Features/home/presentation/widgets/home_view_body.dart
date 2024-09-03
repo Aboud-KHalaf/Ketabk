@@ -66,7 +66,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 child: Text(
                   'Newest Books',
                   style: Styles.textStyle18.copyWith(
-                    color: Theme.of(context).hintColor,
+                    color: Theme.of(context).cardColor,
                   ),
                 ),
               ),
