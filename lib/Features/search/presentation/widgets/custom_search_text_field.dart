@@ -9,8 +9,8 @@ class CustomSearchTextField extends StatelessWidget {
     return TextField(
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
-        enabledBorder: buildOutlineInputBorder(),
-        focusedBorder: buildOutlineInputBorder(),
+        enabledBorder: buildOutlineInputBorder(Theme.of(context).cardColor),
+        focusedBorder: buildOutlineInputBorder(Theme.of(context).hintColor),
         hintText: 'Search',
         suffixIcon: IconButton(
           onPressed: () {},
@@ -26,10 +26,10 @@ class CustomSearchTextField extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder buildOutlineInputBorder() {
+  OutlineInputBorder buildOutlineInputBorder(Color color) {
     return OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: Colors.white,
+      borderSide: BorderSide(
+        color: color,
       ),
       borderRadius: BorderRadius.circular(
         12,

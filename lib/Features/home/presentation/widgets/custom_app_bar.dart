@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
               icon: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 size: 22,
-                color: Theme.of(context).cardColor,
+                color: Theme.of(context).hintColor,
               ))
         ],
       ),

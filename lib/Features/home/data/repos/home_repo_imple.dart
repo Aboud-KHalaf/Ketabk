@@ -9,26 +9,37 @@ import 'package:bookly/core/network/network_info.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-class HomeRepoImple extends HomeRepo {
+class HomeRepoImpl extends HomeRepo {
   final HomeLocalDataSources homeLocalDataSources;
   final HomeRemoteDataSources homeRemoteDataSources;
-  final NetworkInfo networkInfo;
+  final InternetConnectivity networkInfo;
 
-  HomeRepoImple(
-      {required this.networkInfo,
-      required this.homeLocalDataSources,
-      required this.homeRemoteDataSources});
+  HomeRepoImpl({
+    required this.networkInfo,
+    required this.homeLocalDataSources,
+    required this.homeRemoteDataSources,
+  });
+
+  Future<bool> _hasNetwork() async {
+    return await networkInfo.isConnected();
+  }
+
   @override
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks(
       {int page = 0}) async {
     try {
-      List<BookEntity> books;
-      books = homeLocalDataSources.fetchNewestBooks();
-      if (books.isNotEmpty && !(await networkInfo.isConneced)) {
+      final hasNetwork = await _hasNetwork();
+      if (!hasNetwork) {
         log("No Internet Connection");
-        // return right(books);
+        final books = homeLocalDataSources.fetchFeaturedBooks();
+        if (books.isEmpty) {
+          return left(ServerFailure(
+              message: "No Internet Connection and no cached data available"));
+        }
+        return right(books);
       }
-      books = await homeRemoteDataSources.fetchFeaturedBooks(page: page);
+
+      final books = await homeRemoteDataSources.fetchFeaturedBooks(page: page);
       return right(books);
     } catch (e) {
       if (e is DioException) {
@@ -42,19 +53,24 @@ class HomeRepoImple extends HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchNewestBooks(
       {int page = 0}) async {
     try {
-      List<BookEntity> books;
-      // books = homeLocalDataSources.fetchNewestBooks();
-      // if (books.isNotEmpty && !(await networkInfo.isConneced)) {
-      //   log("No Internet Connection");
-      //   return right(books);
-      // }
-      books = await homeRemoteDataSources.fetchNewestBooks(page: page);
+      final hasNetwork = await _hasNetwork();
+      if (!hasNetwork) {
+        log("No Internet Connection");
+        final books = homeLocalDataSources.fetchNewestBooks();
+        if (books.isEmpty) {
+          return left(ServerFailure(
+              message: "No Internet Connection and no cached data available"));
+        }
+        return right(books);
+      }
+
+      final books = await homeRemoteDataSources.fetchNewestBooks(page: page);
       return right(books);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(message: 'error'));
+      return left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -62,14 +78,14 @@ class HomeRepoImple extends HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchSimilarBooks(
       {required String category}) async {
     try {
-      List<BookEntity> books;
-      books = await homeRemoteDataSources.fetchSimilarBooks(category: category);
+      final books =
+          await homeRemoteDataSources.fetchSimilarBooks(category: category);
       return right(books);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(message: 'error'));
+      return left(ServerFailure(message: e.toString()));
     }
   }
 }

@@ -33,7 +33,8 @@ Future<void> setupServiceLocator() async {
 
   // Register services
   sl.registerLazySingleton<ApiService>(() => ApiService(sl<Dio>()));
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
+  sl.registerLazySingleton<InternetConnectivity>(
+      () => InternetConnectivityImpl());
 
   // Register data sources
   sl.registerLazySingleton<HomeLocalDataSources>(
@@ -44,8 +45,8 @@ Future<void> setupServiceLocator() async {
       () => SearchRemoteDataSourceImpl(apiService: sl<ApiService>()));
 
   // Register repositories
-  sl.registerLazySingleton<HomeRepo>(() => HomeRepoImple(
-        networkInfo: sl<NetworkInfo>(),
+  sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(
+        networkInfo: sl<InternetConnectivity>(),
         homeLocalDataSources: sl<HomeLocalDataSources>(),
         homeRemoteDataSources: sl<HomeRemoteDataSources>(),
       ));
