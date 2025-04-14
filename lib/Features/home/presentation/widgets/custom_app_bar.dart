@@ -10,30 +10,73 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 20),
-      child: Row(
-        children: [
-          Hero(
-            tag: 'logo',
-            child: Image.asset(
-              AssetsData.logo,
-              width: 100,
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: BackdropFilter(
+          filter: ColorFilter.mode(
+            Colors.white.withOpacity(0.1),
+            BlendMode.overlay,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(
+              children: [
+                Hero(
+                  tag: 'logo',
+                  child: TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.0, end: 1.0),
+                    duration: const Duration(milliseconds: 500),
+                    builder: (context, value, child) {
+                      return Transform.scale(
+                        scale: value,
+                        child: child,
+                      );
+                    },
+                    child: Image.asset(
+                      AssetsData.logo,
+                      width: 100,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                const ThemeSwitcher(),
+                const SizedBox(width: 6),
+                TweenAnimationBuilder<double>(
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 500),
+                  builder: (context, value, child) {
+                    return Transform.scale(
+                      scale: value,
+                      child: child,
+                    );
+                  },
+                  child: IconButton(
+                    onPressed: () {
+                      GoRouter.of(context).push(AppRouter.kSearchView);
+                    },
+                    icon: Icon(
+                      FontAwesomeIcons.magnifyingGlass,
+                      size: 22,
+                      color: Theme.of(context).hintColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const Spacer(),
-          const ThemeSwitcher(),
-          const SizedBox(width: 6),
-          IconButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRouter.kSearchView);
-              },
-              icon: Icon(
-                FontAwesomeIcons.magnifyingGlass,
-                size: 22,
-                color: Theme.of(context).hintColor,
-              ))
-        ],
+        ),
       ),
     );
   }

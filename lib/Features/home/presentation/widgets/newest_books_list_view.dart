@@ -1,23 +1,32 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly/Features/home/presentation/widgets/newest_books_list_view_item.dart';
+import 'package:bookly/Features/home/presentation/widgets/pagination_loading.dart';
 import 'package:flutter/material.dart';
 
-import 'newest_books_list_view_item.dart';
-
 class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({super.key, required this.books});
+  const BestSellerListView({
+    super.key,
+    required this.books,
+    this.isLoadingMore = false,
+  });
 
   final List<BookEntity> books;
+  final bool isLoadingMore;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: books.length,
+      physics: const BouncingScrollPhysics(),
+      itemCount: books.length + (isLoadingMore ? 1 : 0),
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: BookListViewItem(book: books[index]),
+        if (index == books.length) {
+          return const PaginationLoading();
+        }
+        return BookListViewItem(
+          book: books[index],
+          index: index,
         );
       },
     );

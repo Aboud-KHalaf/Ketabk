@@ -16,6 +16,7 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   late ScrollController _scrollController;
   bool _isLoadingMore = false;
+  double _offset = 0;
 
   @override
   void initState() {
@@ -23,10 +24,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     _scrollController = ScrollController();
 
     _scrollController.addListener(() {
-      //
       var currentPostition = _scrollController.position.pixels;
       var maxPosition = _scrollController.position.maxScrollExtent;
-      //
+
+      setState(() {
+        _offset = currentPostition;
+      });
+
       if (currentPostition >= maxPosition * 0.8 && !_isLoadingMore) {
         _isLoadingMore = true;
         context.read<NewestBooksCubit>().loadMoreBooks().then((_) {
@@ -46,6 +50,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       controller: _scrollController,
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: Column(
@@ -54,19 +59,37 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               const Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 30,
+                  vertical: 20,
                 ),
                 child: CustomAppBar(),
               ),
-              const FeaturedBooksListViewBlocBuilder(),
+              Transform.translate(
+                offset: Offset(0, _offset * 0.2),
+                child: const FeaturedBooksListViewBlocBuilder(),
+              ),
               const SizedBox(
                 height: 50,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  'Newest Books',
-                  style: Styles.textStyle18.copyWith(
-                    color: Theme.of(context).cardColor,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 500),
+                  builder: (context, value, child) {
+                    return Transform.translate(
+                      offset: Offset(0, 20 * (1 - value)),
+                      child: Opacity(
+                        opacity: value,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Newest Books',
+                    style: Styles.textStyle18.copyWith(
+                      color: Theme.of(context).cardColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -76,8 +99,21 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             ],
           ),
         ),
-        const SliverToBoxAdapter(
-          child: NewestBooksListViewBlocBuilder(),
+        SliverToBoxAdapter(
+          child: TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 500),
+            builder: (context, value, child) {
+              return Transform.translate(
+                offset: Offset(0, 20 * (1 - value)),
+                child: Opacity(
+                  opacity: value,
+                  child: child,
+                ),
+              );
+            },
+            child: const NewestBooksListViewBlocBuilder(),
+          ),
         ),
       ],
     );
