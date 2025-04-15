@@ -5,6 +5,7 @@ import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'custom_app_bar.dart';
+import 'loading_more_books_indecator_widget.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({Key? key}) : super(key: key);
@@ -124,6 +125,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             child: const NewestBooksListViewBlocBuilder(),
           ),
         ),
+        if (_isLoadingMore)
+          const SliverToBoxAdapter(
+            child: LoadingMoreBooksIndecatorWidget(),
+          ),
       ],
     );
   }
