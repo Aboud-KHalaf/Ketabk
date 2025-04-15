@@ -47,6 +47,7 @@ class CustomAppBar extends StatelessWidget {
                     child: Image.asset(
                       AssetsData.logo,
                       width: 100,
+                      height: 50,
                     ),
                   ),
                 ),

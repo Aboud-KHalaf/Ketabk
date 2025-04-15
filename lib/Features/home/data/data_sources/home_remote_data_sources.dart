@@ -3,9 +3,6 @@ import 'package:bookly/core/utils/api_services.dart';
 import 'package:bookly/core/utils/functions/get_books_list.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-import '../../../../core/utils/functions/cache_books_data.dart';
-
 abstract class HomeRemoteDataSources {
   Future<List<BookEntity>> fetchFeaturedBooks({int page = 0});
   Future<List<BookEntity>> fetchNewestBooks({int page = 0});

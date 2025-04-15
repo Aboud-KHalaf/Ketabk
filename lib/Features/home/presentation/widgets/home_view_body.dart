@@ -59,7 +59,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             children: [
               const Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: 30,
+                  horizontal: 20,
                   vertical: 20,
                 ),
                 child: CustomAppBar(),
