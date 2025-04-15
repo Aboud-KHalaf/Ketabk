@@ -4,10 +4,13 @@ import 'package:bookly/Features/home/data/data_sources/home_local_data_sources.d
 import 'package:bookly/Features/home/data/data_sources/home_remote_data_sources.dart';
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/domain/repos/home_repo.dart';
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/errors/failure.dart';
 import 'package:bookly/core/network/network_info.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
+import '../../../../core/utils/functions/cache_books_data.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final HomeLocalDataSources homeLocalDataSources;
@@ -40,6 +43,10 @@ class HomeRepoImpl extends HomeRepo {
       }
 
       final books = await homeRemoteDataSources.fetchFeaturedBooks(page: page);
+      if (page == 0) {
+        await homeLocalDataSources.clearFeaturedBooks();
+        cacheBooksData(books, kFeaturedBox);
+      }
       return right(books);
     } catch (e) {
       if (e is DioException) {
@@ -65,6 +72,10 @@ class HomeRepoImpl extends HomeRepo {
       }
 
       final books = await homeRemoteDataSources.fetchNewestBooks(page: page);
+      if (page == 0) {
+        await homeLocalDataSources.clearNewestBooks();
+        cacheBooksData(books, kNewestBox);
+      }
       return right(books);
     } catch (e) {
       if (e is DioException) {

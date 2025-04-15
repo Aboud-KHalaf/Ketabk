@@ -26,10 +26,6 @@ class HomeRemoteDataSourcesImpl extends HomeRemoteDataSources {
     debugPrint(
         '-- fetchFeaturedBooks : the api has fetched the data of page number $page');
 
-    if (page == 0) {
-      cacheBooksData(books, kFeaturedBox);
-    }
-
     return books;
   }
 
@@ -43,9 +39,6 @@ class HomeRemoteDataSourcesImpl extends HomeRemoteDataSources {
     debugPrint(
         '-- fetchNewestBooks :  the api has fetched the data of page number $page');
 
-    if (page == 0) {
-      cacheBooksData(books, kFeaturedBox);
-    }
     return books;
   }
 

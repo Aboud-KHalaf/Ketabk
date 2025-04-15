@@ -6,6 +6,9 @@ abstract class HomeLocalDataSources {
   List<BookEntity> fetchFeaturedBooks({page = 0});
 
   List<BookEntity> fetchNewestBooks();
+
+  Future<void> clearNewestBooks();
+  Future<void> clearFeaturedBooks();
 }
 
 class HomeLocalDataSourcesImpl extends HomeLocalDataSources {
@@ -19,5 +22,18 @@ class HomeLocalDataSourcesImpl extends HomeLocalDataSources {
   List<BookEntity> fetchNewestBooks() {
     var box = Hive.box<BookEntity>(kNewestBox);
     return box.values.toList();
+  }
+
+  @override
+  Future<void> clearFeaturedBooks() async {
+    final featuredBox = Hive.box<BookEntity>(kFeaturedBox);
+    await featuredBox.clear();
+  }
+
+  @override
+  Future<void> clearNewestBooks() async {
+    final newestBox = Hive.box<BookEntity>(kNewestBox);
+
+    await newestBox.clear();
   }
 }
