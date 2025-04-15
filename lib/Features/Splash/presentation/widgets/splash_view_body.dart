@@ -4,6 +4,7 @@ import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({Key? key}) : super(key: key);
@@ -26,22 +27,89 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Hero(
-            tag: 'logo',
-            child: Image.asset(AssetsData.logo),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Theme.of(context).primaryColor.withOpacity(0.1),
+            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).primaryColor.withOpacity(0.1),
+          ],
+        ),
+      ),
+      child: Stack(
+        children: [
+          // Animated background orbs
+          ...List.generate(5, (index) {
+            return Positioned(
+              left: MediaQuery.of(context).size.width * (0.1 + index * 0.2),
+              top: MediaQuery.of(context).size.height * 0.2,
+              child: Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                ),
+              )
+                  .animate(
+                    onPlay: (controller) => controller.repeat(),
+                  )
+                  .fade(
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.easeInOut,
+                  )
+                  .scale(
+                    begin: const Offset(0.8, 0.8),
+                    end: const Offset(1.2, 1.2),
+                    duration: const Duration(seconds: 3),
+                    curve: Curves.easeInOut,
+                  ),
+            );
+          }),
+          // Main content
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.2),
+                          blurRadius: 20,
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(AssetsData.logo),
+                  ),
+                )
+                    .animate()
+                    .fadeIn(
+                      duration: const Duration(milliseconds: 800),
+                      curve: Curves.easeOut,
+                    )
+                    .scale(
+                      begin: const Offset(0.8, 0.8),
+                      end: const Offset(1, 1),
+                      duration: const Duration(milliseconds: 800),
+                      curve: Curves.easeOut,
+                    ),
+              ),
+              const SizedBox(height: 16),
+              SlidingText(slidingAnimation: slidingAnimation),
+            ],
           ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        SlidingText(slidingAnimation: slidingAnimation),
-      ],
+        ],
+      ),
     );
   }
 
@@ -53,7 +121,10 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
     slidingAnimation =
         Tween<Offset>(begin: const Offset(0, 5), end: const Offset(0, -1))
-            .animate(animationController);
+            .animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeOutBack,
+    ));
 
     animationController.forward();
   }

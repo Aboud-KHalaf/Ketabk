@@ -88,7 +88,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     'Newest Books',
                     style: Styles.textStyle18.copyWith(
                       color: Theme.of(context).cardColor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.5,
+                      shadows: [
+                        Shadow(
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.3),
+                          offset: const Offset(0, 2),
+                          blurRadius: 4,
+                        ),
+                      ],
                     ),
                   ),
                 ),
