@@ -29,7 +29,9 @@
 > Make sure you have Flutter installed: [Flutter Setup Guide](https://docs.flutter.dev/get-started/install)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ketabk.git
-cd ketabk
+
 flutter pub get
 flutter run
+
+## 👨‍💻 Author
+Developed with ❤️ by Aboud Khalaf
