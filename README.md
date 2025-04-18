@@ -32,6 +32,6 @@
 
 flutter pub get
 flutter run
-
+```
 ## 👨‍💻 Author
 Developed with ❤️ by Aboud Khalaf
