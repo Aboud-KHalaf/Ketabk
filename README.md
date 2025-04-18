@@ -1,16 +1,35 @@
-# books
+# 📚 Ketabk
 
-A new Flutter project.
+**Ketabk** is a beautifully designed Flutter app that helps users discover and read books from the **Google Books API**. Whether you're looking for trending reads or timeless classics, Ketabk provides a seamless and enjoyable reading experience — all in a modern, responsive interface.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔥 Explore a curated list of **Featured Books**
+- 🆕 Stay updated with the **Newest Releases**
+- 🔍 **Search** books by title, author, or keyword
+- 📖 Open and **read books** inside the app
+- 🧠 Discover **Similar Books** related to your interests
+- 🌗 **Dark & Light Mode** support for better readability
+- 🎯 Smooth **animations** for a modern user experience
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧪 Tech Stack
+
+- **Flutter** – Cross-platform mobile development
+- **Bloc** & **Cubit** – State management
+- **Google Books API** – Book data and content
+
+---
+
+## 🚀 Getting Started
+
+> Make sure you have Flutter installed: [Flutter Setup Guide](https://docs.flutter.dev/get-started/install)
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ketabk.git
+cd ketabk
+flutter pub get
+flutter run
