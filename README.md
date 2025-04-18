@@ -13,6 +13,7 @@
 - 🧠 Discover **Similar Books** related to your interests
 - 🌗 **Dark & Light Mode** support for better readability
 - 🎯 Smooth **animations** for a modern user experience
+- 👨‍💻 Offline access
 
 ---
 
@@ -20,6 +21,7 @@
 
 - **Flutter** – Cross-platform mobile development
 - **Bloc** & **Cubit** – State management
+- **Hive** –  for local storage
 - **Google Books API** – Book data and content
 
 ---
