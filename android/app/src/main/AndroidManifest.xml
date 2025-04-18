@@ -4,7 +4,7 @@
 
 
     <application
-        android:label="book2"
+        android:label="ketabk"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
