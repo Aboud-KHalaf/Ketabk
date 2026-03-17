@@ -27,7 +27,7 @@ abstract class AppRouter {
         path: kSearchView,
         builder: (context, state) => BlocProvider(
           create: (context) => sl<SearchBooksCubit>(),
-          child: const SearchView(),
+          child: SearchView(initialQuery: state.extra as String?),
         ),
       ),
       GoRoute(

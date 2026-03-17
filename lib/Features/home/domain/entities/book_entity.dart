@@ -19,6 +19,12 @@ class BookEntity extends HiveObject {
   final List<String>? categories;
   @HiveField(7)
   final String? url;
+  @HiveField(8)
+  final num? pageCount;
+  @HiveField(9)
+  final String? language;
+  @HiveField(10)
+  final String? publishedDate;
 
   BookEntity({
     required this.categories,
@@ -29,6 +35,9 @@ class BookEntity extends HiveObject {
     required this.atutherName,
     required this.price,
     required this.rating,
+    this.pageCount,
+    this.language,
+    this.publishedDate,
   });
 }
 

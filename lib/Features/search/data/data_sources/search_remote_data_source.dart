@@ -4,7 +4,10 @@ import 'package:bookly/core/utils/functions/get_books_list.dart';
 import 'package:flutter/material.dart';
 
 abstract class SearchRemoteDataSource {
-  Future<List<BookEntity>> fetchSearedBooks({required String searchText});
+  Future<List<BookEntity>> fetchSearedBooks({
+    required String searchText,
+    String? orderBy,
+  });
 }
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
@@ -12,14 +15,22 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
   SearchRemoteDataSourceImpl({required this.apiService});
   @override
-  Future<List<BookEntity>> fetchSearedBooks(
-      {required String searchText}) async {
-    var data = await apiService.getApi(
-        endPoint: 'volumes?Filtering=relevance&q=subject:$searchText');
+  Future<List<BookEntity>> fetchSearedBooks({
+    required String searchText,
+    String? orderBy,
+  }) async {
+    String url = 'volumes?q=subject:$searchText';
+    if (orderBy != null) {
+      url += '&orderBy=$orderBy';
+    } else {
+      url += '&Filtering=relevance'; // Default filtering if not specified
+    }
+
+    var data = await apiService.getApi(endPoint: url);
     List<BookEntity> books = getBooksList(data);
 
     debugPrint(
-        '-- fetchSearedBooks :  the api has fetched the data of searchText : ( $searchText )');
+        '-- fetchSearedBooks :  the api has fetched the data of searchText : ( $searchText ) with orderBy: $orderBy');
 
     return books;
   }

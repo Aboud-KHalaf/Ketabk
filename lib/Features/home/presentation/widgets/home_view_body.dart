@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'custom_app_bar.dart';
 import 'loading_more_books_indecator_widget.dart';
+import 'categories_list_view.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({Key? key}) : super(key: key);
@@ -69,7 +70,25 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 child: const FeaturedBooksListViewBlocBuilder(),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  'Browse Categories',
+                  style: Styles.textStyle18.copyWith(
+                    color: Theme.of(context).cardColor,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const CategoriesListView(),
+              const SizedBox(
+                height: 40,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

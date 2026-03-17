@@ -10,12 +10,16 @@ class SearchRepoImpl implements SearchRepo {
 
   SearchRepoImpl({required this.searchRemoteDataSource});
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchSearchedBooks(
-      {required String searchText}) async {
+  Future<Either<Failure, List<BookEntity>>> fetchSearchedBooks({
+    required String searchText,
+    String? orderBy,
+  }) async {
     try {
       List<BookEntity> books;
-      books =
-          await searchRemoteDataSource.fetchSearedBooks(searchText: searchText);
+      books = await searchRemoteDataSource.fetchSearedBooks(
+        searchText: searchText,
+        orderBy: orderBy,
+      );
       return right(books);
     } catch (e) {
       if (e is DioException) {

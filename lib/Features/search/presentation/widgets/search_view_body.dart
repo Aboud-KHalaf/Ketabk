@@ -11,8 +11,24 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/utils/styles.dart';
 import 'custom_search_text_field.dart';
 
-class SearchViewBody extends StatelessWidget {
-  const SearchViewBody({super.key});
+class SearchViewBody extends StatefulWidget {
+  const SearchViewBody({super.key, this.initialQuery});
+
+  final String? initialQuery;
+
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialQuery != null) {
+      BlocProvider.of<SearchBooksCubit>(context)
+          .fetchSearchedBooks(searchText: widget.initialQuery!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +59,13 @@ class SearchViewBody extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 CustomSearchTextField(
-                  onSubmitted: (searchText) {
+                  initialValue: widget.initialQuery,
+                  onSubmitted: (searchText, orderBy) {
                     BlocProvider.of<SearchBooksCubit>(context)
-                        .fetchSearchedBooks(searchText: searchText);
+                        .fetchSearchedBooks(
+                      searchText: searchText,
+                      orderBy: orderBy,
+                    );
                   },
                 ),
                 const SizedBox(height: 24),

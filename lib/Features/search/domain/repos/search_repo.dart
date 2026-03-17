@@ -3,6 +3,8 @@ import 'package:bookly/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class SearchRepo {
-  Future<Either<Failure, List<BookEntity>>> fetchSearchedBooks(
-      {required String searchText});
+  Future<Either<Failure, List<BookEntity>>> fetchSearchedBooks({
+    required String searchText,
+    String? orderBy,
+  });
 }

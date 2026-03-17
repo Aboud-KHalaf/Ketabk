@@ -33,8 +33,11 @@ class BookModel extends BookEntity {
           price: 0.0,
           rating: volumeInfo.maturityRating ?? 'noRating',
           categories:
-              (volumeInfo.categories)?.map((e) => e.toString()).toList() ??
+              (volumeInfo?.categories)?.map((e) => e.toString()).toList() ??
                   ["programming"],
+          pageCount: volumeInfo.pageCount,
+          language: volumeInfo.language,
+          publishedDate: volumeInfo.publishedDate,
         );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
@@ -67,6 +70,5 @@ class BookModel extends BookEntity {
         'searchInfo': searchInfo?.toJson(),
       };
 }
-
 
 // for Hive : flutter packages pub run build_runner build

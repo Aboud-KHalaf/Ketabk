@@ -9,10 +9,13 @@
 - 🔥 Explore a curated list of **Featured Books**
 - 🆕 Stay updated with the **Newest Releases**
 - 📚 **My Library**: A personalized "Add to Reading" list to save your favorite books
-- 🔍 **Search**: Powerful search by title, author, or category
+- 🔍 **Search**: Powerful search by title, author, or category with smart sorting (Relevance/Newest)
+- 🏷️ **Categories Explorer**: One-tap discovery of books in the same genre from any book's details
+- 🧭 **Categorized Browsing**: Discover popular genres directly from the Home page via interactive chips
 - 📖 **Reader View**: Immersive reading experience with PDF support
 - ✨ **Premium UI/UX**:
   - Glassmorphic design language for AppBars and components
+  - Custom filtering bottom sheets with tactile feedback
   - Sophisticated background patterns and liquid gradients
   - Staggered entrance and hover animations
   - Smooth scale and tactile interactive feedback

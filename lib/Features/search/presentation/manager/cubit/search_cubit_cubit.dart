@@ -10,9 +10,17 @@ class SearchBooksCubit extends Cubit<SearchBooksState> {
       : super(SearchBooksInitial());
 
   final FetchSearchedBooksUseCase fetchSearchedBooksUseCase;
-  Future<void> fetchSearchedBooks({required String searchText}) async {
+  Future<void> fetchSearchedBooks({
+    required String searchText,
+    String? orderBy,
+  }) async {
     emit(SearchBooksLoading());
-    var result = await fetchSearchedBooksUseCase.call(searchText);
+    var result = await fetchSearchedBooksUseCase.call(
+      SearchBooksParams(
+        searchText: searchText,
+        orderBy: orderBy,
+      ),
+    );
     result.fold((failure) {
       emit(SearchBooksFailure(errMessage: failure.message));
     }, (books) {
