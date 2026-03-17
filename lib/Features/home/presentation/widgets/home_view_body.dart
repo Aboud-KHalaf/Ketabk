@@ -65,31 +65,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 ),
                 child: CustomAppBar(),
               ),
+              const CategoriesListView(),
+              const SizedBox(height: 16),
               Transform.translate(
                 offset: Offset(0, _offset * 0.2),
                 child: const FeaturedBooksListViewBlocBuilder(),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  'Browse Categories',
-                  style: Styles.textStyle18.copyWith(
-                    color: Theme.of(context).cardColor,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const CategoriesListView(),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TweenAnimationBuilder<double>(
