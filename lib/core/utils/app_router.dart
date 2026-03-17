@@ -1,6 +1,7 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/presentation/manager/similar_books_cubit.dart/similar_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/book_details_view.dart';
+import 'package:bookly/Features/home/presentation/views/reading_view.dart';
 import 'package:bookly/Features/home/presentation/views/home_view.dart';
 import 'package:bookly/Features/search/presentation/manager/cubit/search_cubit_cubit.dart';
 import 'package:bookly/Features/search/presentation/views/search_view.dart';
@@ -14,6 +15,7 @@ abstract class AppRouter {
   static const kHomeView = '/homeView';
   static const kBookDetailsView = '/bookDetailsView';
   static const kSearchView = '/searchView';
+  static const kReadingView = '/readingView';
 
   static final router = GoRouter(
     routes: [
@@ -38,6 +40,10 @@ abstract class AppRouter {
           create: (context) => sl<SimilarBooksCubit>(),
           child: BookDetailsView(bookEntity: state.extra as BookEntity),
         ),
+      ),
+      GoRoute(
+        path: kReadingView,
+        builder: (context, state) => const ReadingView(),
       ),
     ],
   );

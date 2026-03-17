@@ -32,7 +32,9 @@ class BookDetailsViewBody extends StatelessWidget {
             hasScrollBody: false,
             child: Column(
               children: [
-                const CustomBookDetailsAppBar(),
+                CustomBookDetailsAppBar(
+                  bookEntity: bookEntity,
+                ),
                 BookDetailsSection(
                   bookEntity: bookEntity,
                 ).animate().fadeIn(duration: const Duration(milliseconds: 500)),

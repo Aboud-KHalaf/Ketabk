@@ -8,21 +8,29 @@
 
 - 🔥 Explore a curated list of **Featured Books**
 - 🆕 Stay updated with the **Newest Releases**
-- 🔍 **Search** books by title, author, or keyword
-- 📖 Open and **read books** inside the app
-- 🧠 Discover **Similar Books** related to your interests
-- 🌗 **Dark & Light Mode** support for better readability
-- 🎯 Smooth **animations** for a modern user experience
-- 👨‍💻 Offline access
+- 📚 **My Library**: A personalized "Add to Reading" list to save your favorite books
+- 🔍 **Search**: Powerful search by title, author, or category
+- 📖 **Reader View**: Immersive reading experience with PDF support
+- ✨ **Premium UI/UX**:
+  - Glassmorphic design language for AppBars and components
+  - Sophisticated background patterns and liquid gradients
+  - Staggered entrance and hover animations
+  - Smooth scale and tactile interactive feedback
+- 🧠 **Smart Discovery**: Discover similar books based on your reading interests
+- 🌗 **Adaptive Themes**: Seamless Dark & Light mode switching
+- 👨‍💻 **Offline Persistence**: Local storage with Hive for your reading list
 
 ---
 
 ## 🧪 Tech Stack
 
-- **Flutter** – Cross-platform mobile development
-- **Bloc** & **Cubit** – State management
-- **Hive** –  for local storage
-- **Google Books API** – Book data and content
+- **Flutter** – UI framework
+- **Dio** – networking & API integration
+- **Clean Architecture** – Scalable and maintainable structure
+- **Bloc & Cubit** – Robust state management
+- **Hive** – High-performance local storage
+- **GoRouter** – Declarative navigation
+- **Flutter Animate** – High-performance animations
 
 ---
 
@@ -31,9 +39,15 @@
 > Make sure you have Flutter installed: [Flutter Setup Guide](https://docs.flutter.dev/get-started/install)
 
 ```bash
+# Clone the repository
+git clone https://github.com/Aboud-KHalaf/Ketabk.git
 
+# Install dependencies
 flutter pub get
+
+# Run the app
 flutter run
 ```
+
 ## 👨‍💻 Author
-Developed with ❤️ by Aboud Khalaf
+Developed with ❤️ by **Aboud Khalaf**

@@ -1,3 +1,5 @@
+import 'package:bookly/Features/home/presentation/manager/reading_bloc/reading_bloc.dart';
+import 'package:bookly/Features/home/presentation/manager/reading_bloc/reading_event.dart';
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/manager/featured_books_cubit/featured_book_cubit.dart';
@@ -15,6 +17,7 @@ void main() async {
   Hive.registerAdapter<BookEntity>(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kNewestBox);
+  await Hive.openBox<BookEntity>(kReadingBox);
   await Hive.openBox(kSettingsBox);
 
   setupServiceLocator();
@@ -36,6 +39,9 @@ class Bookly extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<ThemeCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ReadingBloc>()..add(FetchReadingListEvent()),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
