@@ -71,7 +71,7 @@ class CategoriesListView extends StatelessWidget {
                     duration: const Duration(milliseconds: 500),
                   );
             },
-            separatorBuilder: (context, index) => const SizedBox(width: 10),
+            separatorBuilder: (context, index) => const SizedBox(width: 6),
             itemCount: categories.length,
           ),
         ),

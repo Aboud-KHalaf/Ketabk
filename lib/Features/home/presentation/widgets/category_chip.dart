@@ -35,10 +35,13 @@ class CategoryChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.tag,
-              size: 16,
-              color: Theme.of(context).primaryColor,
+            Padding(
+              padding: const EdgeInsets.only(top: 1.5),
+              child: Icon(
+                Icons.tag,
+                size: 16,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
             const SizedBox(width: 6),
             Text(
